@@ -11,7 +11,7 @@ pipeline{
 			steps{
 				
 				sh '''
-				if [ -n "$(docker ps -a --filter "name=testcontainer" --format "{{.Names}}")" ]; then
+				if [ -n "$(docker ps -a --filter "name = testcontainer" --format "{{.Names}}")"]; then
 					echo "Container exist.. Stopping and Removing it."
 					docker stop testcontainer
 					docker rm testcontainer
