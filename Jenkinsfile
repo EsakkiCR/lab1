@@ -3,7 +3,6 @@ pipeline{
     stages{
         stage('Git Checkout'){
             steps{
-                echo "Checkingout Git Repo"
                 git branch:'master', url:'/opt/devops-project'
             }
         }
