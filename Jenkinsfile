@@ -1,11 +1,6 @@
 pipeline{
 	agent any
 	stages{
-		stage('Config Repo'){
-			steps{
-				git branch:'main', url:'/opt/devops-project'
-			}
-		}
 		stage('Docker Build'){
 			steps{
 				echo "Building Docker Image"
