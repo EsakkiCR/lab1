@@ -19,7 +19,7 @@ pipeline{
 					echo "No Container exist, Nothing to remove"
 				fi
 
-				docker run -d --name testcontainer -p 82:80 testingimage:1.0'
+				docker run -d --name testcontainer -p 82:80 testingimage:1.0
 				'''
 			}
 		}
