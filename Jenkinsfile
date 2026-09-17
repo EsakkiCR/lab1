@@ -3,7 +3,7 @@ pipeline{
 	stages{
 		stage('Config Repo'){
 			steps{
-				git bran:'main', url:'/opt/devops-project'
+				git branch:'main', url:'/opt/devops-project'
 			}
 		}
 		stage('Docker Build'){
