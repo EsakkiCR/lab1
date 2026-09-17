@@ -9,8 +9,18 @@ pipeline{
 		}
 		stage('Docker Deploymet'){
 			steps{
-				echo "Deploying application"
-				sh 'docker run -d --name testcontainer -p 82:80 testimage:1.0'
+				
+				sh '''
+				if [ -n "$(docker ps -a --filter "name = testcontainer" --format "{{.Names}}")"]; then
+					echo "Container exist.. Stopping and Removing it."
+					docker stop testcontainer
+					docker rm testcontainer
+				else
+					echo "No Container exist, Nothing to remove"
+				fi
+
+				docker run -d --name testcontainer -p 82:80 testingimage:1.0'
+				'''
 			}
 		}
 		stage('Verify Container'){
