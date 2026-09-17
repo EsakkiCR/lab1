@@ -7,13 +7,6 @@ pipeline{
 				sh 'docker build -t testimage:1.0 .'
 			}
 		}
-		stage('Pre Check Deployment'){
-			steps{
-				echo "Stope and Remove existing containters.."
-				sh 'docker stop testcontainer || true'
-				sh 'docker rm testcontainer || true'
-			}
-		}
 		stage('Docker Deploymet'){
 			steps{
 				echo "Deploying application"
