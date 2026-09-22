@@ -11,7 +11,7 @@ pipeline{
                         script{
                             if (params.ROLLBACK) {
                                 echo "Rolling back to version: ${params.TARGET_VERSION}"
-                                sh '''
+                                sh """
                                         if [ -n "$(docker ps -a --filter "name = testcontainer" --format "{{.Names}}")" ]; then
                                                 echo "Container exist.. Stopping and Removing it."
                                                 docker stop testcontainer
@@ -21,7 +21,7 @@ pipeline{
                                         fi
 
                                         docker run -d --name testcontainer -p 82:80 testimage:${params.TARGET_VERSION}
-                                    '''
+                                   """
 
                             } else {
                                 echo "Proceeding with standard deployment..."
