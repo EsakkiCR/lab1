@@ -6,6 +6,24 @@ pipeline{
         }
 
         stages{
+		stage('ValidateRollback'){
+                    steps{
+                        script{
+                            if (params.ROLLBACK){
+                                echo "Validating Rollback ${params.TARGET_VERSION}"
+                                sh """
+                                    if docker image inspect testimage:${params.TARGET_VERSION} > /dev/null 2>&1; then
+                                        echo "Docker Image testimage:${params.TARGET_VERSION} available"
+                                    else
+                                        echo "No Image 'testimage:${params.TARGET_VERSION}' available"
+                                        exit 1
+                                    fi
+                                """
+                            }
+                        }
+                    }
+                }
+
                 stage('Deploy or Rollback') {
                     steps{
                         script{
