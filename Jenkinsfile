@@ -1,6 +1,6 @@
 pipeline{
         agent any
-        properties([
+        options([
                     parameters([
                         booleanParam(name: 'ROLLBACK', defaultValue: false, description: 'Check to execute rollback'),
                         string(name: 'TARGET_VERSION', defaultValue: '', description: 'Version tag to rollback to')
