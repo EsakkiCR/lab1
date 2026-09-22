@@ -4,7 +4,7 @@ pipeline{
 		stage('Docker Build'){
 			steps{
 				echo "Building Docker Image"
-				sh 'docker build -t testimage:1.0 .'
+				sh 'docker build -t testimage:$BUILD_NUMBER .'
 			}
 		}
 		stage('Docker Deploymet'){
@@ -19,7 +19,7 @@ pipeline{
 					echo "No Container exist, Nothing to remove"
 				fi
 
-				docker run -d --name testcontainer -p 82:80 testimage:1.0
+				docker run -d --name testcontainer -p 82:80 testimage:$BUILD_NUMBER
 				'''
 			}
 		}
